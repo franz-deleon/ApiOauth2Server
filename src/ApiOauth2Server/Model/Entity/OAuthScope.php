@@ -23,14 +23,14 @@ class OAuthScope
     protected $scope;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ApiOauth2Server\Model\Entity\OAuthClient", inversedBy="scope", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="ApiOauth2Server\Model\Entity\OAuthClient", inversedBy="scopes", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="client_id", referencedColumnName="client_id")
      * @var string
      */
     protected $clientId;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ApiOauth2Server\Model\Entity\OAuthUser", inversedBy="scope", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="ApiOauth2Server\Model\Entity\OAuthUser", inversedBy="scopes", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
      * @var string
      */

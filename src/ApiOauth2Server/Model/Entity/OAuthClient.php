@@ -19,7 +19,7 @@ class OAuthClient
     protected $clientId;
 
     /**
-     * @ORM\ManyToMany(targetEntity="ApiOauth2Server\Model\Entity\OAuthUser", mappedBy="clientIds")
+     * @ORM\ManyToMany(targetEntity="ApiOauth2Server\Model\Entity\OAuthUser", mappedBy="clients")
      */
     protected $userIds;
 
@@ -39,7 +39,7 @@ class OAuthClient
      * @ORM\OneToMany(targetEntity="ApiOauth2Server\Model\Entity\OAuthScope", mappedBy="clientId", cascade={"remove"})
      * @var string
      */
-    protected $scope;
+    protected $scopes;
 
     /**
      * @ORM\Column(name="client_secret", type="string", length=20, nullable=false)

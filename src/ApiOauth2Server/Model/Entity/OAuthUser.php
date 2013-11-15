@@ -25,7 +25,7 @@ class OAuthUser
      *      inverseJoinColumns={@ORM\JoinColumn(name="client_id", referencedColumnName="client_id")}
      * )
      */
-    protected $clientIds;
+    protected $clients;
 
     /**
      * @ORM\OneToMany(targetEntity="ApiOauth2Server\Model\Entity\OAuthRefreshToken", mappedBy="userId", cascade={"remove"})
@@ -43,7 +43,7 @@ class OAuthUser
      * @ORM\OneToMany(targetEntity="ApiOauth2Server\Model\Entity\OAuthScope", mappedBy="userId", cascade={"remove"})
      * @var string
      */
-    protected $scope;
+    protected $scopes;
 
     /**
      * @ORM\Column(name="user_name", type="string", length=50, nullable=false)
