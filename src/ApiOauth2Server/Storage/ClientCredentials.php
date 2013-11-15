@@ -13,8 +13,6 @@ class ClientCredentials extends AbstractStorage implements ClientCredentialsInte
 
         if (!empty($clientData)) {
             $camelcaseFilter = $this->getServiceLocator()->get('FilterManager')->get('wordcamelcasetounderscore');
-            //$hydrator   = $this->getServiceLocator()->get('HydratorManager')->get('DoctrineModule\Stdlib\Hydrator\DoctrineObject');
-            //$clientData = $hydrator->extract($clientData);
 
             $camelcasedKeys = array_map(function ($val) use ($camelcaseFilter) {
                 return strtolower($camelcaseFilter->filter($val));

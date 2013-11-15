@@ -22,6 +22,21 @@ class OAuthUserRepository extends EntityRepository
                 'password' => $password,
             ));
 
-        return $queryBuilder->getQuery()->getResult();
+        return $queryBuilder->getQuery();
+    }
+
+    public function getUserWithScopeAndClientByUsernameAndClientId($username, $clientId)
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->addSelect(array('u.userId', 's.scope'))
+            ->leftJoin('u.scopes', 's')
+            ->where('u.userName = :username')
+            ->andWhere('s.clientId = :clientId')
+            ->setParameters(array(
+                'username' => $username,
+                'clientId' => $clientId,
+            ));
+
+        return $qb->getQuery();
     }
 }

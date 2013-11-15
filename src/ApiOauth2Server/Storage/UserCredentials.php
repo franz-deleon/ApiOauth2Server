@@ -7,19 +7,21 @@ class UserCredentials extends AbstractStorage implements UserCredentialsInterfac
 {
     public function checkUserCredentials($username, $password)
     {
-        $user = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default')
+        $user = $this->getServiceLocator()
+            ->get('doctrine.entitymanager.orm_default')
             ->getRepository('ApiOauth2Server\Model\Entity\OAuthUser')
-            ->getUserByUsernameAndPassword($username, $password);
+            ->getUserByUsernameAndPassword($username, $password)
+            ->getResult();
 
         if (empty($user)) {
             return false;
         }
 
-        $clientId = (int) $this->getServiceLocator()->get('request')->getQuery('client_id');
+        $clientId = (string) $this->getServiceLocator()->get('request')->getQuery('client_id');
 
         $user = array_pop($user);
-        foreach ($user->getClientIds() as $client) {
-            $userClientId = (int) $client->getClientId();
+        foreach ($user->getClients() as $client) {
+            $userClientId = (string) $client->getClientId();
             if ($userClientId === $clientId) {
                 return true;
             }
@@ -32,10 +34,18 @@ class UserCredentials extends AbstractStorage implements UserCredentialsInterfac
     {
         $clientId = (int) $this->getServiceLocator()->get('request')->getQuery('client_id');
 
-        $user = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default')
+        $userDetails = $this->getServiceLocator()
+            ->get('doctrine.entitymanager.orm_default')
             ->getRepository('ApiOauth2Server\Model\Entity\OAuthUser')
-            ->findOneByUserName($username);
+            ->getUserWithScopeAndClientByUsernameAndClientId($username, $clientId)
+            ->getArrayResult();
 
-        //var_dump($user->getClientIds());
+        if (!empty($userDetails)) {
+            // remove the first aggregate value
+            unset($userDetails[0][0]);
+            return $this->convertCamelKeysToUnderscore($userDetails[0]);
+        }
+
+        return false;
     }
 }
