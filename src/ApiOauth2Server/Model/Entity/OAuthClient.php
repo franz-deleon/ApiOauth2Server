@@ -21,7 +21,7 @@ class OAuthClient
     /**
      * @ORM\ManyToMany(targetEntity="ApiOauth2Server\Model\Entity\OAuthUser", mappedBy="clients")
      */
-    protected $userIds;
+    protected $users;
 
     /**
      * @ORM\OneToMany(targetEntity="ApiOauth2Server\Model\Entity\OAuthRefreshToken", mappedBy="clientId", cascade={"remove"})
@@ -89,17 +89,17 @@ class OAuthClient
 	/**
      * @return the $userIds
      */
-    public function getUserIds()
+    public function getUsers()
     {
-        return $this->userIds;
+        return $this->users;
     }
 
 	/**
      * @param \Doctrine\Common\Collections\ArrayCollection $userIds
      */
-    public function setUserIds($userIds)
+    public function setUsers($users)
     {
-        $this->userIds = $userIds;
+        $this->users = $users;
     }
 
     /**

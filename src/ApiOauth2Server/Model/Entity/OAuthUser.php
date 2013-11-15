@@ -19,7 +19,7 @@ class OAuthUser
     protected $userId;
 
     /**
-     * @ORM\ManyToMany(targetEntity="ApiOauth2Server\Model\Entity\OAuthClient", inversedBy="userIds")
+     * @ORM\ManyToMany(targetEntity="ApiOauth2Server\Model\Entity\OAuthClient", inversedBy="users")
      * @ORM\JoinTable(name="users_clients",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="user_id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="client_id", referencedColumnName="client_id")}
@@ -46,7 +46,7 @@ class OAuthUser
     protected $scopes;
 
     /**
-     * @ORM\Column(name="user_name", type="string", length=50, nullable=false)
+     * @ORM\Column(name="user_name", type="string", unique=true, length=50, nullable=false)
      * @var string
      */
     protected $userName;
@@ -105,17 +105,17 @@ class OAuthUser
 	/**
      * @return the $clientIds
      */
-    public function getClientIds()
+    public function getClients()
     {
-        return $this->clientIds;
+        return $this->clients;
     }
 
 	/**
      * @param \Doctrine\Common\Collections\ArrayCollection $clientIds
      */
-    public function setClientIds($clientIds)
+    public function setClients($clients)
     {
-        $this->clientIds = $clientIds;
+        $this->clients = $clients;
     }
 
     /**
