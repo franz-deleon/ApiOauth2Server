@@ -1,10 +1,10 @@
 <?php
-namespace OAuth2Provider\Model\Entity;
+namespace ApiOauth2Server\Model\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="OAuth2Provider\Model\Repository\OAuthAccessTokenRepository")
+ * @ORM\Entity(repositoryClass="ApiOauth2Server\Model\Repository\OAuthAccessTokenRepository")
  * @ORM\Table(name="oauth_access_tokens")
  */
 class OAuthAccessToken
@@ -17,14 +17,14 @@ class OAuthAccessToken
 
     /**
      * @ORM\Column(type="string", length=50, nullable=false)
-     * @ORM\ManyToOne(targetEntity="OAuth2Provider\Model\Entity\OAuthClient", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="ApiOauth2Server\Model\Entity\OAuthClient", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="client_id", referencedColumnName="clientId")
      */
     protected $clientId;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=false)
-     * @ORM\ManyToOne(targetEntity="OAuth2Provider\Model\Entity\OAuthUser", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="ApiOauth2Server\Model\Entity\OAuthUser", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="userId")
      */
     protected $userId;

@@ -1,24 +1,29 @@
 <?php
-namespace OAuth2Provider\Model\Entity;
+namespace ApiOauth2Server\Model\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity(repositoryClass="OAuth2Provider\Model\Repository\OAuthUserRepository")
+ * @ORM\Entity(repositoryClass="ApiOauth2Server\Model\Repository\OAuthUserRepository")
  * @ORM\Table(name="oauth_users")
  */
 class OAuthUser
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="string", length=50, nullable=false)
-     * @var string
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @var integer
      */
     protected $userId;
 
     /**
-     * @ORM\ManyToMany(targetEntity="OAuth2Provider\Model\Entity\OAuthClient", mappedBy="userIds")
+     * @ORM\ManyToMany(targetEntity="ApiOauth2Server\Model\Entity\OAuthClient", inversedBy="userIds")
+     * @ORM\JoinTable(name="users_clients",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="userId")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="client_id", referencedColumnName="clientId")}
+     * )
      */
     protected $clientIds;
 

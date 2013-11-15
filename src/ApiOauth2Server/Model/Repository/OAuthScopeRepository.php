@@ -1,5 +1,5 @@
 <?php
-namespace OAuth2Provider\Model\Repository;
+namespace ApiOauth2Server\Model\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
