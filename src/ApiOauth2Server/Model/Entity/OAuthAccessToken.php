@@ -11,21 +11,22 @@ class OAuthAccessToken
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="string", unique=true, nullable=false)
+     * @ORM\Column(name="access_token", type="string", unique=true, nullable=false)
+     * @var string
      */
     protected $accessToken;
 
     /**
-     * @ORM\Column(type="string", length=50, nullable=false)
-     * @ORM\ManyToOne(targetEntity="ApiOauth2Server\Model\Entity\OAuthClient", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(name="client_id", referencedColumnName="clientId")
+     * @ORM\ManyToOne(targetEntity="ApiOauth2Server\Model\Entity\OAuthClient", inversedBy="accessTokens")
+     * @ORM\JoinColumn(name="client_id", referencedColumnName="client_id")
+     * @var string
      */
     protected $clientId;
 
     /**
-     * @ORM\Column(type="string", length=50, nullable=false)
-     * @ORM\ManyToOne(targetEntity="ApiOauth2Server\Model\Entity\OAuthUser", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="userId")
+     * @ORM\ManyToOne(targetEntity="ApiOauth2Server\Model\Entity\OAuthUser", inversedBy="accessTokens")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
+     * @var int
      */
     protected $userId;
 

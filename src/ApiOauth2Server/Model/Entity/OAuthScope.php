@@ -11,7 +11,7 @@ class OAuthScope
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="string", length=100, nullable=false)
+     * @ORM\Column(type="string", length=100)
      * @var string
      */
     protected $type = 'supported';
@@ -23,10 +23,83 @@ class OAuthScope
     protected $scope;
 
     /**
-     * @ORM\Column(type="string", length=200)
-     * @ORM\ManyToOne(targetEntity="ApiOauth2Server\Model\Entity\OAuthClient", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(name="client_id", referencedColumnName="clientId")
+     * @ORM\ManyToOne(targetEntity="ApiOauth2Server\Model\Entity\OAuthClient", inversedBy="scope", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="client_id", referencedColumnName="client_id")
      * @var string
      */
     protected $clientId;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ApiOauth2Server\Model\Entity\OAuthUser", inversedBy="scope", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
+     * @var string
+     */
+    protected $userId;
+
+	/**
+     * @return the $type
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+	/**
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+	/**
+     * @return the $scope
+     */
+    public function getScope()
+    {
+        return $this->scope;
+    }
+
+	/**
+     * @param string $scope
+     */
+    public function setScope($scope)
+    {
+        $this->scope = $scope;
+    }
+
+	/**
+     * @return the $clientId
+     */
+    public function getClientId()
+    {
+        return $this->clientId;
+    }
+
+	/**
+     * @param string $clientId
+     */
+    public function setClientId($clientId)
+    {
+        $this->clientId = $clientId;
+    }
+
+	/**
+     * @return the $userId
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+	/**
+     * @param string $userId
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+    }
+
+
+
 }

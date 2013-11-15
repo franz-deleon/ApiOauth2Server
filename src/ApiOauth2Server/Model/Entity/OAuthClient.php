@@ -12,9 +12,9 @@ class OAuthClient
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     * @var integer
+     * @ORM\Column(name="client_id", type="integer")
+     * @ORM\GeneratedValue(strategy="UUID")
+     * @var string
      */
     protected $clientId;
 
@@ -24,26 +24,50 @@ class OAuthClient
     protected $userIds;
 
     /**
-     * @ORM\Column(type="string", length=20, nullable=false)
+     * @ORM\OneToMany(targetEntity="ApiOauth2Server\Model\Entity\OAuthRefreshToken", mappedBy="clientId", cascade={"remove"})
+     * @var string
+     */
+    protected $refreshTokens;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ApiOauth2Server\Model\Entity\OAuthAccessToken", mappedBy="clientId", cascade={"remove"})
+     * @var string
+     */
+    protected $accessTokens;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ApiOauth2Server\Model\Entity\OAuthScope", mappedBy="clientId", cascade={"remove"})
+     * @var string
+     */
+    protected $scope;
+
+    /**
+     * @ORM\Column(name="client_secret", type="string", length=20, nullable=false)
      * @var string
      */
     protected $clientSecret;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(name="redirect_uri", type="string", length=255, nullable=true)
      * @var string
      */
     protected $redirectUri;
 
     /**
-     * @ORM\Column(type="string", length=50, nullable=true)
+     * @ORM\Column(name="grant_types", type="string", length=50, nullable=true)
      * @var string
      */
     protected $grantTypes;
 
+	/**
+     * Constructor
+     */
 	public function __construct()
     {
-        $this->userIds = new ArrayCollection();
+        $this->userIds       = new ArrayCollection();
+        $this->refreshTokens = new ArrayCollection();
+        $this->accessTokens  = new ArrayCollection();
+        $this->scope         = new ArrayCollection();
     }
 
     /**
@@ -76,6 +100,38 @@ class OAuthClient
     public function setUserIds($userIds)
     {
         $this->userIds = $userIds;
+    }
+
+    /**
+     * @return the $refreshTokens
+     */
+    public function getRefreshTokens()
+    {
+        return $this->refreshTokens;
+    }
+
+	/**
+     * @param string $refreshTokens
+     */
+    public function setRefreshTokens($refreshTokens)
+    {
+        $this->refreshTokens = $refreshTokens;
+    }
+
+	/**
+     * @return the $accessTokens
+     */
+    public function getAccessTokens()
+    {
+        return $this->accessTokens;
+    }
+
+	/**
+     * @param string $accessTokens
+     */
+    public function setAccessTokens($accessTokens)
+    {
+        $this->accessTokens = $accessTokens;
     }
 
 	/**

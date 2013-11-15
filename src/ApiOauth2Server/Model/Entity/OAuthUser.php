@@ -12,7 +12,7 @@ class OAuthUser
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="user_id", type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      * @var integer
      */
@@ -21,14 +21,32 @@ class OAuthUser
     /**
      * @ORM\ManyToMany(targetEntity="ApiOauth2Server\Model\Entity\OAuthClient", inversedBy="userIds")
      * @ORM\JoinTable(name="users_clients",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="userId")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="client_id", referencedColumnName="clientId")}
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="user_id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="client_id", referencedColumnName="client_id")}
      * )
      */
     protected $clientIds;
 
     /**
-     * @ORM\Column(type="string", length=50, nullable=false)
+     * @ORM\OneToMany(targetEntity="ApiOauth2Server\Model\Entity\OAuthRefreshToken", mappedBy="userId", cascade={"remove"})
+     * @var string
+     */
+    protected $refreshTokens;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ApiOauth2Server\Model\Entity\OAuthAccessToken", mappedBy="userId", cascade={"remove"})
+     * @var string
+     */
+    protected $accessTokens;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ApiOauth2Server\Model\Entity\OAuthScope", mappedBy="userId", cascade={"remove"})
+     * @var string
+     */
+    protected $scope;
+
+    /**
+     * @ORM\Column(name="user_name", type="string", length=50, nullable=false)
      * @var string
      */
     protected $userName;
@@ -40,13 +58,13 @@ class OAuthUser
     protected $password;
 
     /**
-     * @ORM\Column(type="string", length=100, nullable=true)
+     * @ORM\Column(name="first_name", type="string", length=100, nullable=true)
      * @var string
      */
     protected $firstName;
 
     /**
-     * @ORM\Column(type="string", length=100, nullable=true)
+     * @ORM\Column(name="last_name", type="string", length=100, nullable=true)
      * @var string
      */
     protected $lastName;
@@ -57,9 +75,15 @@ class OAuthUser
      */
     protected $created;
 
+	/**
+     *Constructor
+     */
 	public function __construct()
     {
-        $this->clientIds = new ArrayCollection();
+        $this->clientIds     = new ArrayCollection();
+        $this->refreshTokens = new ArrayCollection();
+        $this->accessTokens  = new ArrayCollection();
+        $this->scope         = new ArrayCollection();
     }
 
     /**
@@ -92,6 +116,38 @@ class OAuthUser
     public function setClientIds($clientIds)
     {
         $this->clientIds = $clientIds;
+    }
+
+    /**
+     * @return the $refreshTokens
+     */
+    public function getRefreshTokens()
+    {
+        return $this->refreshTokens;
+    }
+
+	/**
+     * @param string $refreshTokens
+     */
+    public function setRefreshTokens($refreshTokens)
+    {
+        $this->refreshTokens = $refreshTokens;
+    }
+
+	/**
+     * @return the $accessTokens
+     */
+    public function getAccessTokens()
+    {
+        return $this->accessTokens;
+    }
+
+	/**
+     * @param string $accessTokens
+     */
+    public function setAccessTokens($accessTokens)
+    {
+        $this->accessTokens = $accessTokens;
     }
 
 	/**
