@@ -42,7 +42,7 @@ class OAuthClient
     protected $scopes;
 
     /**
-     * @ORM\Column(name="client_secret", type="string", length=20, nullable=false)
+     * @ORM\Column(name="client_secret", type="string", length=100)
      * @var string
      */
     protected $clientSecret;

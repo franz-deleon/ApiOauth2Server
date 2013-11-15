@@ -19,8 +19,7 @@ class OAuthClientRepository extends EntityRepository
             ->where('c.clientId = ?1')
             ->setParameter(1, $clientId);
         //$r = $qb->getQuery()->getSQL();
-        //var_dump($r);die;
 
-        return $qb->getQuery()->getSingleResult();
+        return $qb->getQuery();
     }
 }
