@@ -54,6 +54,7 @@ class OAuthAccessToken
     public function setAccessToken($accessToken)
     {
         $this->accessToken = $accessToken;
+        return $this;
     }
 
 	/**
@@ -70,6 +71,7 @@ class OAuthAccessToken
     public function setClientId($clientId)
     {
         $this->clientId = $clientId;
+        return $this;
     }
 
 	/**
@@ -86,6 +88,7 @@ class OAuthAccessToken
     public function setUserId($userId)
     {
         $this->userId = $userId;
+        return $this;
     }
 
 	/**
@@ -102,6 +105,7 @@ class OAuthAccessToken
     public function setExpires($expires)
     {
         $this->expires = $expires;
+        return $this;
     }
 
 	/**
@@ -118,6 +122,6 @@ class OAuthAccessToken
     public function setScope($scope)
     {
         $this->scope = $scope;
+        return $this;
     }
-
 }
