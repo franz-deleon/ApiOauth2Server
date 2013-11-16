@@ -6,8 +6,9 @@ return array(
         ),
         'invokables' => array(
             /** Storages **/
-            'ApiOauth2Server/Storage/UserCredentials' => 'ApiOauth2Server\Storage\UserCredentials',
-            'ApiOauth2Server/Storage/AccessToken'     => 'ApiOauth2Server\Storage\AccessToken',
+            'ApiOauth2Server/Storage/ClientCredentials' => 'ApiOauth2Server\Storage\ClientCredentials',
+            'ApiOauth2Server/Storage/UserCredentials'   => 'ApiOauth2Server\Storage\UserCredentials',
+            'ApiOauth2Server/Storage/AccessToken'       => 'ApiOauth2Server\Storage\AccessToken',
 
             /** Entities **/
             'ApiOauth2Server/Model/Entity/AccessToken'  => 'ApiOauth2Server\Model\Entity\OAuthAccessToken',
