@@ -14,14 +14,14 @@ return array(
         'connection' => array(
             // default connection name
             'orm_default' => array(
-                'driverClass' => 'Doctrine\DBAL\Driver\OCI8\Driver',
+                'driverClass' => 'Doctrine\DBAL\Driver\PDOMySql\Driver',
                 'params' => array(
                     'host'     => '192.168.2.2',
-                    'port'     => '1521',
-                    'dbname'   => 'XE',
-                    'user'     => 'MEDIAOAUTHOWN',
-                    'password' => 'password',
-                    'platform' => new \ApiOauth2Server\Platform\LocalOci8Platform(), // quick hack for our local sql format ;(
+                    'port'     => '3306',
+                    'dbname'   => 'mediaapi_oauth2',
+                    'user'     => 'root',
+                    'password' => 'franz1',
+                    //'platform' => new \ApiOauth2Server\Platform\LocalOci8Platform(), // quick hack for our local sql format ;(
                 ),
             )
         )
