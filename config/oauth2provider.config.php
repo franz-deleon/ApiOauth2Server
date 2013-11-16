@@ -3,21 +3,14 @@ return array(
     'servers' => array(
         'mediaapi' => array(
             'storages' => array(
-                'user_credentials' => new \OAuth2ProviderTests\Assets\Storage\UserCredentialsStorage(),
-                'access_token'  => new \OAuth2ProviderTests\Assets\Storage\AccessTokenStorage(),
-                'refresh_token' => new \OAuth2ProviderTests\Assets\Storage\RefreshTokenStorage(),
+                'client_credentials' => 'ApiOauth2Server/Storage/ClientCredentials',
+                'user_credentials'   => 'ApiOauth2Server/Storage/UserCredentials',
+                'access_token'       => 'ApiOauth2Server/Storage/AccessToken',
+                //'refresh_token'    => new \OAuth2ProviderTests\Assets\Storage\RefreshTokenStorage(),
             ),
             'grant_types' => array(
                 'user_credentials',
             ),
-            'response_types' => array(
-                array(
-                    'name' => 'OAuth2\ResponseType\AccessToken',
-                    'params' => array(
-                    ),
-                ),
-            ),
-            'token_type' => 'bearer',
         ),
     ),
 

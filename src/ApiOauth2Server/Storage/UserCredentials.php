@@ -17,7 +17,7 @@ class UserCredentials extends AbstractStorage implements UserCredentialsInterfac
             return false;
         }
 
-        $clientId = (string) $this->getServiceLocator()->get('request')->getQuery('client_id');
+        $clientId = (string) $this->getServiceLocator()->get('request')->getPost('client_id');
 
         $user = array_pop($user);
         foreach ($user->getClients() as $client) {
@@ -32,7 +32,7 @@ class UserCredentials extends AbstractStorage implements UserCredentialsInterfac
 
     public function getUserDetails($username)
     {
-        $clientId = (int) $this->getServiceLocator()->get('request')->getQuery('client_id');
+        $clientId = (int) $this->getServiceLocator()->get('request')->getPost('client_id');
 
         $userDetails = $this->getServiceLocator()
             ->get('doctrine.entitymanager.orm_default')

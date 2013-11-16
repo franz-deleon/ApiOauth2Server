@@ -14,7 +14,7 @@ class OAuthClientRepository extends EntityRepository
     public function getClientDetails($clientId)
     {
         $qb = $this->_em->createQueryBuilder()
-            ->select('c.clientId, c.redirectUri, c.grantTypes')
+            ->select('c.clientId, c.clientSecret, c.redirectUri, c.grantTypes')
             ->from($this->_entityName, 'c')
             ->where('c.clientId = ?1')
             ->setParameter(1, $clientId);
