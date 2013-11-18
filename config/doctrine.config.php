@@ -18,5 +18,12 @@ return array(
                 'ApiOauth2Server\Model\Entity' => 'annotation_driver',
             )
         )
-    )
+    ),
+    'connection' => array(
+        'orm_default' => array(
+            'doctrine_type_mappings' => array(
+                'ENUM' => 'string'
+            ),
+        ),
+    ),
 );

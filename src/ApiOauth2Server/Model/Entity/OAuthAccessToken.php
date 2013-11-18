@@ -117,11 +117,10 @@ class OAuthAccessToken
     }
 
 	/**
-     * @param field_type $scope
+     * @param string $scope
      */
     public function setScope($scope)
     {
         $this->scope = $scope;
-        return $this;
     }
 }

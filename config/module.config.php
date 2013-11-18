@@ -9,6 +9,7 @@ return array(
             'ApiOauth2Server/Storage/ClientCredentials' => 'ApiOauth2Server\Storage\ClientCredentials',
             'ApiOauth2Server/Storage/UserCredentials'   => 'ApiOauth2Server\Storage\UserCredentials',
             'ApiOauth2Server/Storage/AccessToken'       => 'ApiOauth2Server\Storage\AccessToken',
+            'ApiOauth2Server/Storage/RefreshToken'      => 'ApiOauth2Server\Storage\RefreshToken',
 
             /** Entities **/
             'ApiOauth2Server/Model/Entity/AccessToken'  => 'ApiOauth2Server\Model\Entity\OAuthAccessToken',

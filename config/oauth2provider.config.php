@@ -6,10 +6,18 @@ return array(
                 'client_credentials' => 'ApiOauth2Server/Storage/ClientCredentials',
                 'user_credentials'   => 'ApiOauth2Server/Storage/UserCredentials',
                 'access_token'       => 'ApiOauth2Server/Storage/AccessToken',
-                //'refresh_token'    => new \OAuth2ProviderTests\Assets\Storage\RefreshTokenStorage(),
+                'refresh_token'      => 'ApiOauth2Server/Storage/RefreshToken',
             ),
             'grant_types' => array(
                 'user_credentials',
+                'refresh_token'
+            ),
+            'scope_util' => array(
+                'name' => 'scope',
+                'options' => array(
+                    'default_scope' => 'read',
+                    'supported_scopes' => array('read', 'write', 'delete'),
+                ),
             ),
         ),
     ),

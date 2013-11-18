@@ -10,6 +10,13 @@ use Doctrine\ORM\Mapping as ORM;
 class OAuthRefreshToken
 {
     /**
+     * Refresh token valid 'used' values
+     * @var string
+     */
+    const USED_YES = 'yes';
+    const USED_NO  = 'no';
+
+    /**
      * @ORM\Id
      * @ORM\Column(name="refresh_token", type="string", length=100, nullable=false)
      * @var string
@@ -17,14 +24,14 @@ class OAuthRefreshToken
     protected $refreshToken;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ApiOauth2Server\Model\Entity\OAuthClient", inversedBy="refreshTokens")
+     * @ORM\ManyToOne(targetEntity="ApiOauth2Server\Model\Entity\OAuthClient", inversedBy="refreshTokens", fetch="EAGER")
      * @ORM\JoinColumn(name="client_id", referencedColumnName="client_id")
      * @var string
      */
     protected $clientId;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ApiOauth2Server\Model\Entity\OAuthUser", inversedBy="refreshTokens")
+     * @ORM\ManyToOne(targetEntity="ApiOauth2Server\Model\Entity\OAuthUser", inversedBy="refreshTokens", fetch="EAGER")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
      * @var int
      */
@@ -37,8 +44,13 @@ class OAuthRefreshToken
     protected $expires;
 
     /**
-     * @ORM\Column(type="string", length=50, nullable=true)
+     * @ORM\Column(type="string", columnDefinition="ENUM('yes', 'no')", nullable=false)
      * @var string
+     */
+    protected $used;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     protected $scope;
 
@@ -56,6 +68,7 @@ class OAuthRefreshToken
     public function setRefreshToken($refreshToken)
     {
         $this->refreshToken = $refreshToken;
+        return $this;
     }
 
 	/**
@@ -72,6 +85,7 @@ class OAuthRefreshToken
     public function setClientId($clientId)
     {
         $this->clientId = $clientId;
+        return $this;
     }
 
 	/**
@@ -88,6 +102,7 @@ class OAuthRefreshToken
     public function setUserId($userId)
     {
         $this->userId = $userId;
+        return $this;
     }
 
 	/**
@@ -104,6 +119,24 @@ class OAuthRefreshToken
     public function setExpires($expires)
     {
         $this->expires = $expires;
+        return $this;
+    }
+
+	/**
+     * @return the $used
+     */
+    public function getUsed()
+    {
+        return $this->used;
+    }
+
+	/**
+     * @param number $used
+     */
+    public function setUsed($used)
+    {
+        $this->used = $used;
+        return $this;
     }
 
 	/**
@@ -121,6 +154,4 @@ class OAuthRefreshToken
     {
         $this->scope = $scope;
     }
-
-
 }
