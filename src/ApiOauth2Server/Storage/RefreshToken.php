@@ -13,15 +13,19 @@ class RefreshToken extends AbstractStorage implements RefreshTokenInterface
         $refreshToken = $em->getRepository('ApiOauth2Server\Model\Entity\OAuthRefreshToken')->find($refreshToken);
 
         if (null !== $refreshToken && $refreshToken->getUsed() === RToken::USED_NO) {
+            $clientId = $refreshToken->getClientId()->getClientId();
+            $userId   = $refreshToken->getUserId()->getUserId();
+
             $return = array();
             $return['refresh_token'] = $refreshToken->getRefreshToken();
-            $return['client_id'] = $refreshToken->getClientId()->getClientId();
-            $return['expires']   = $refreshToken->getExpires()->getTimestamp();;
+            $return['client_id'] = $clientId;
+            $return['user_id']   = $userId;
+            $return['expires']   = $refreshToken->getExpires()->getTimestamp();
 
             $scope = $em->getRepository('ApiOauth2Server\Model\Entity\OAuthScope')
                 ->findOneBy(array(
-                    'clientId' => $refreshToken->getClientId()->getClientId(),
-                    'userId' => $refreshToken->getUserId()->getUserId()
+                    'clientId' => $clientId,
+                    'userId'   => $userId,
                 ));
 
             if (null !== $scope) {

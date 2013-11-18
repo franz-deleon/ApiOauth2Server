@@ -10,7 +10,13 @@ return array(
             ),
             'grant_types' => array(
                 'user_credentials',
-                'refresh_token'
+                'refresh_token' => array(
+                    'options' => array(
+                        'configs' => array(
+                            'always_issue_new_refresh_token' => true,
+                        ),
+                    ),
+                )
             ),
             'scope_util' => array(
                 'name' => 'scope',
@@ -21,25 +27,6 @@ return array(
             ),
         ),
     ),
-
-    /**
-     * Main Primary Server
-     *
-     * Define by picking the "main server" to use from the server configurations list/keys above.
-     * You can access the main server using the through the main service manager by:
-     *
-     * <code>
-     * $sm->get('oauth2provider.server.main');
-     * </code>
-     *
-     * Defaults to: default
-     */
     'main_server' => 'mediaapi',
-
-    /**
-     * Controller
-     *
-     * Define which controller to use:
-     */
     'controller' => 'OAuth2Provider\Controller\UserCredentialsController',
 );

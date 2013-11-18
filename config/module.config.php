@@ -1,9 +1,6 @@
 <?php
 return array(
     'service_manager' => array(
-        'factories' => array(
-
-        ),
         'invokables' => array(
             /** Storages **/
             'ApiOauth2Server/Storage/ClientCredentials' => 'ApiOauth2Server\Storage\ClientCredentials',

@@ -11,7 +11,8 @@ class Module
     public function getModuleDependencies()
     {
         return array(
-            'DoctrineORMModule'
+            'DoctrineORMModule',
+            'OAuth2Provider',
         );
     }
 
