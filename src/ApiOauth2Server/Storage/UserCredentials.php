@@ -17,6 +17,7 @@ class UserCredentials extends AbstractStorage implements UserCredentialsInterfac
             return false;
         }
 
+        // todo: support json request by pulling request on global sm request
         $clientId = (string) $this->getServiceLocator()->get('request')->getPost('client_id');
 
         $user = array_pop($user);
@@ -32,6 +33,7 @@ class UserCredentials extends AbstractStorage implements UserCredentialsInterfac
 
     public function getUserDetails($username)
     {
+        // todo: support json request by pulling request on global sm request
         $clientId = (int) $this->getServiceLocator()->get('request')->getPost('client_id');
 
         $userDetails = $this->getServiceLocator()
