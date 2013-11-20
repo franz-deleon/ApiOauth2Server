@@ -21,8 +21,8 @@ return array(
             'scope_util' => array(
                 'name' => 'scope',
                 'options' => array(
-                    'default_scope' => 'read',
-                    'supported_scopes' => array('read', 'write', 'delete'),
+                    'default_scope' => 'get',
+                    'supported_scopes' => array('get', 'put', 'post', 'delete'),
                 ),
             ),
         ),
