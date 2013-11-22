@@ -11,4 +11,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class OAuthAccessTokenRepository extends EntityRepository
 {
+    public function getUnexpiredAccessTokenByClientIdUserId($clientId, $userId)
+    {
+        $queryBuilder = $this->createQueryBuilder('at')
+            ->where('at.clientId = :clientId')
+            ->andWhere('at.userId = :userId')
+            ->andWhere('at.expires > :expires')
+            ->setParameters(array(
+                'clientId' => $clientId,
+                'userId'   => $userId,
+                'expires'  => date_create(),
+            ));
+
+        return $queryBuilder->getQuery();
+    }
 }

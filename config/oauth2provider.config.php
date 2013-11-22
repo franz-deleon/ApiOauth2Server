@@ -8,12 +8,17 @@ return array(
                 'access_token'       => 'ApiOauth2Server/Storage/AccessToken',
                 'refresh_token'      => 'ApiOauth2Server/Storage/RefreshToken',
             ),
+            'response_types' => array(
+                array(
+                    'name' => 'ApiOauth2Server\ResponseType\AccessToken',
+                )
+            ),
             'grant_types' => array(
                 'user_credentials',
                 'refresh_token' => array(
                     'options' => array(
                         'configs' => array(
-                            'always_issue_new_refresh_token' => true,
+                            'always_issue_new_refresh_token' => false,
                         ),
                     ),
                 )

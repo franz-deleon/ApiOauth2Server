@@ -21,21 +21,16 @@ class RefreshToken extends AbstractStorage implements RefreshTokenInterface
             $return['client_id'] = $clientId;
             $return['user_id']   = $userId;
             $return['expires']   = $refreshToken->getExpires()->getTimestamp();
-
-            $scope = $em->getRepository('ApiOauth2Server\Model\Entity\OAuthScope')
-                ->findOneBy(array(
-                    'clientId' => $clientId,
-                    'userId'   => $userId,
-                ));
-
-            if (null !== $scope) {
-                $return['scope'] = $scope->getScope();
-            }
+            $return['scope']     = $refreshToken->getScope();
 
             return $return;
         }
     }
 
+    /**
+     * @var $expires Expire need to be in DateTime
+     * @see \OAuth2\Storage\RefreshTokenInterface::setRefreshToken()
+     */
     public function setRefreshToken($refToken, $clientId, $userId, $expires, $scope = null)
     {
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
@@ -46,7 +41,7 @@ class RefreshToken extends AbstractStorage implements RefreshTokenInterface
         $refreshToken->setRefreshToken($refToken)
             ->setClientId($clientId)
             ->setUserId($userId)
-            ->setExpires(new \DateTime("@{$expires}"))
+            ->setExpires($expires)
             ->setUsed(RToken::USED_NO)
             ->setScope($scope);
 

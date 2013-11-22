@@ -17,7 +17,6 @@ class UserCredentials extends AbstractStorage implements UserCredentialsInterfac
             return false;
         }
 
-        // todo: support json request by pulling request on global sm request
         $clientId = (string) $this->getServiceLocator()->get('oauth2provider.server.main.request')->request('client_id');
 
         $user = array_pop($user);
@@ -27,13 +26,11 @@ class UserCredentials extends AbstractStorage implements UserCredentialsInterfac
                 return true;
             }
         }
-
         return false;
     }
 
     public function getUserDetails($username)
     {
-        // todo: support json request by pulling request on global sm request
         $clientId = (string) $this->getServiceLocator()->get('oauth2provider.server.main.request')->request('client_id');
 
         $userDetails = $this->getServiceLocator()
@@ -43,8 +40,7 @@ class UserCredentials extends AbstractStorage implements UserCredentialsInterfac
             ->getArrayResult();
 
         if (!empty($userDetails)) {
-            // remove the first aggregate value
-            unset($userDetails[0][0]);
+            unset($userDetails[0][0]); // remove the first aggregate value
             return $this->convertCamelKeysToUnderscore($userDetails[0]);
         }
 

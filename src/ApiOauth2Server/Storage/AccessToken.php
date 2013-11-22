@@ -1,6 +1,8 @@
 <?php
 namespace ApiOauth2Server\Storage;
 
+use ApiOauth2Server\Lib\Utility;
+
 use OAuth2\Storage\AccessTokenInterface;
 
 class AccessToken extends AbstractStorage implements AccessTokenInterface
@@ -17,7 +19,7 @@ class AccessToken extends AbstractStorage implements AccessTokenInterface
             ->find($oauthToken);
 
         if (null !== $accessToken) {
-            if ($accessToken->getExpires()->getTimestamp() > time()) {
+            if ($accessToken->getExpires()->getTimestamp() > Utility::createTime()->getTimestamp()) {
                 $hydrator = $this->getServiceLocator()
                     ->get('HydratorManager')
                     ->get('DoctrineModule\Stdlib\Hydrator\DoctrineObject');
@@ -39,7 +41,6 @@ class AccessToken extends AbstractStorage implements AccessTokenInterface
                 if ($return['expires'] instanceof \DateTime) {
                     $return['expires'] = $return['expires']->getTimestamp();
                 }
-
                 unset($accessToken);
 
                 return $this->convertCamelKeysToUnderscore($return);
@@ -61,7 +62,7 @@ class AccessToken extends AbstractStorage implements AccessTokenInterface
         $accessToken->setAccessToken($oauthToken)
             ->setClientId($client)
             ->setUserId($user)
-            ->setExpires(new \DateTime("@{$expires}"))
+            ->setExpires($expires)
             ->setScope($scope);
 
         $em->persist($accessToken);
