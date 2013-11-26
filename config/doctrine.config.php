@@ -28,4 +28,12 @@ return array(
             ),
         ),
     ),
+    'migrations_configuration' => array(
+        'orm_default' => array(
+            'directory' => realpath(__DIR__ . '/../migrations/DoctrineMigrations'),
+            'name' => 'ApiOauth2Server Database Migrations',
+            'namespace' => 'DoctrineMigrations',
+            'table' => 'migrations',
+        ),
+    ),
 );
