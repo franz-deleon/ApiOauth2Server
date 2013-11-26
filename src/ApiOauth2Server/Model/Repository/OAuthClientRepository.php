@@ -20,6 +20,6 @@ class OAuthClientRepository extends EntityRepository
             ->setParameter(1, $clientId);
         //$r = $qb->getQuery()->getSQL();
 
-        return $qb->getQuery();
+        return $qb->getQuery()->useResultCache(true, 3600, $clientId);
     }
 }

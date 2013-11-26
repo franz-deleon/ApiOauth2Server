@@ -34,13 +34,13 @@ class RefreshToken extends AbstractStorage implements RefreshTokenInterface
     public function setRefreshToken($refToken, $clientId, $userId, $expires, $scope = null)
     {
         $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $clientId = $em->getRepository('ApiOauth2Server\Model\Entity\OAuthClient')->find($clientId);
-        $userId   = $em->getRepository('ApiOauth2Server\Model\Entity\OAuthUser')->find($userId);
+        $client = $em->getRepository('ApiOauth2Server\Model\Entity\OAuthClient')->find($clientId);
+        $user   = $em->getRepository('ApiOauth2Server\Model\Entity\OAuthUser')->find($userId);
 
         $refreshToken = $this->getServiceLocator()->get('ApiOauth2Server/Model/Entity/RefreshToken');
         $refreshToken->setRefreshToken($refToken)
-            ->setClientId($clientId)
-            ->setUserId($userId)
+            ->setClientId($client)
+            ->setUserId($user)
             ->setExpires($expires)
             ->setUsed(RToken::USED_NO)
             ->setScope($scope);

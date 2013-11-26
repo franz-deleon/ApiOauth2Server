@@ -85,7 +85,8 @@ class AccessToken extends OAuth2AccessToken implements ServiceManager\ServiceMan
          */
         $refreshToken = $em
             ->getRepository('ApiOauth2Server\Model\Entity\OAuthRefreshToken')
-            ->findOneBy(array('clientId' => $client_id, 'userId' => $user_id, 'used' => 'no', 'scope' => $token['scope']));
+            ->getUnusedRefreshTokenByClientIdAndUserIdAndScope($client_id, $user_id, $token['scope'])
+            ->getOneOrNullResult();
 
         // do not create new refresh token if current one has not expired
         if (isset($refreshToken) && $includeRefreshToken) {

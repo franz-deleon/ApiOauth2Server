@@ -22,7 +22,7 @@ class OAuthUserRepository extends EntityRepository
                 'password' => $password,
             ));
 
-        return $queryBuilder->getQuery();
+        return $queryBuilder->getQuery()->useResultCache(true, 3600, $username);
     }
 
     public function getUserWithScopeAndClientByUsernameAndClientId($username, $clientId)
@@ -37,6 +37,7 @@ class OAuthUserRepository extends EntityRepository
                 'clientId' => $clientId,
             ));
 
-        return $qb->getQuery();
+        $cacheId = $clientId . $username;
+        return $qb->getQuery()->useResultCache(true, 3600, $cacheId);
     }
 }

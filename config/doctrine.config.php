@@ -1,23 +1,25 @@
 <?php
 return array(
     'driver' => array(
-        // defines an annotation driver with two paths, and names it `my_annotation_driver`
         'annotation_driver' => array(
             'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
-            'cache' => 'array',
+            'cache' => 'apc',
             'paths' => array(
                 realpath(__DIR__ . '/../src/ApiOauth2Server/Model/Entity'),
             ),
         ),
-
-        // default metadata driver, aggregates all other drivers into a single one.
-        // Override `orm_default` only if you know what you're doing
         'orm_default' => array(
             'drivers' => array(
-                // register `my_annotation_driver` for any entity under namespace `My\Namespace`
                 'ApiOauth2Server\Model\Entity' => 'annotation_driver',
             )
         )
+    ),
+    'configuration' => array(
+        'orm_default' => array(
+            'query_cache'    => 'apc',
+            'result_cache'   => 'apc',
+            'metadata_cache' => 'apc',
+        ),
     ),
     'connection' => array(
         'orm_default' => array(

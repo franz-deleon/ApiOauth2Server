@@ -1,6 +1,8 @@
 <?php
 namespace ApiOauth2Server\Model\Repository;
 
+use ApiOauth2Server\Model\Entity\OAuthRefreshToken as RToken;
+
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -11,4 +13,21 @@ use Doctrine\ORM\EntityRepository;
  */
 class OAuthRefreshTokenRepository extends EntityRepository
 {
+    public function getUnusedRefreshTokenByClientIdAndUserIdAndScope($clientId, $userId, $scope)
+    {
+        $qb = $this->createQueryBuilder('rt')
+            ->where('rt.clientId = :clientId')
+            ->andWhere('rt.userId = :userId')
+            ->andWhere('rt.scope = :scope')
+            ->andWhere('rt.used = :used AND rt.expires > :expires')
+            ->setParameters(array(
+                'clientId' => $clientId,
+                'userId'   => $userId,
+                'scope'    => $scope,
+                'used'     => RToken::USED_NO,
+                'expires'  => date_create(),
+            ));
+
+        return $qb->getQuery();
+    }
 }
