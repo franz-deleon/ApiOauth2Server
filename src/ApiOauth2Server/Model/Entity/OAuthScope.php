@@ -11,7 +11,8 @@ class OAuthScope
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="scope_id", type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @var int
      */
     protected $scopeId;
