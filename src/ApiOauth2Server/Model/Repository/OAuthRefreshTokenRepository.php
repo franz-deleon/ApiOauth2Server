@@ -13,6 +13,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class OAuthRefreshTokenRepository extends EntityRepository
 {
+    public function getRefreshTokenById($refreshToken)
+    {
+        $qb = $this->createQueryBuilder('rt')
+            ->where('rt.refreshToken = :refreshToken')
+            ->setParameter('refreshToken', $refreshToken);
+
+        return $qb->getQuery()->useResultCache(true, 3600, $refreshToken);
+    }
+
     public function getUnusedRefreshTokenByClientIdAndUserIdAndScope($clientId, $userId, $scope)
     {
         $qb = $this->createQueryBuilder('rt')

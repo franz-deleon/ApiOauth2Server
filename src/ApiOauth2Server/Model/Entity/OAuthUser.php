@@ -19,7 +19,7 @@ class OAuthUser
     protected $userId;
 
     /**
-     * @ORM\ManyToMany(targetEntity="ApiOauth2Server\Model\Entity\OAuthClient", inversedBy="users")
+     * @ORM\ManyToMany(targetEntity="ApiOauth2Server\Model\Entity\OAuthClient", inversedBy="users", fetch="EAGER")
      * @ORM\JoinTable(name="users_clients",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="user_id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="client_id", referencedColumnName="client_id")}

@@ -1,6 +1,7 @@
 <?php
 namespace ApiOauth2Server\Storage;
 
+use ApiOauth2Server\Lib\Utility;
 use ApiOauth2Server\Model\Entity\OAuthRefreshToken as RToken;
 
 use OAuth2\Storage\RefreshTokenInterface;
@@ -9,17 +10,20 @@ class RefreshToken extends AbstractStorage implements RefreshTokenInterface
 {
     public function getRefreshToken($refreshToken)
     {
-        $em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        $refreshToken = $em->getRepository('ApiOauth2Server\Model\Entity\OAuthRefreshToken')->find($refreshToken);
+        $refreshToken = $this->getServiceLocator()
+            ->get('doctrine.entitymanager.orm_default')
+            ->getRepository('ApiOauth2Server\Model\Entity\OAuthRefreshToken')
+            ->getRefreshTokenById($refreshToken)
+            ->getOneOrNullResult();
 
-        if (null !== $refreshToken && $refreshToken->getUsed() === RToken::USED_NO) {
-            $clientId = $refreshToken->getClientId()->getClientId();
-            $userId   = $refreshToken->getUserId()->getUserId();
-
+        if (isset($refreshToken)
+            && $refreshToken->getUsed() === RToken::USED_NO
+            && $refreshToken->getExpires()->getTimestamp() > Utility::createTime()->getTimestamp()
+        ) {
             $return = array();
             $return['refresh_token'] = $refreshToken->getRefreshToken();
-            $return['client_id'] = $clientId;
-            $return['user_id']   = $userId;
+            $return['client_id'] = $refreshToken->getClientId()->getClientId();
+            $return['user_id']   = $refreshToken->getUserId()->getUserId();
             $return['expires']   = $refreshToken->getExpires()->getTimestamp();
             $return['scope']     = $refreshToken->getScope();
 

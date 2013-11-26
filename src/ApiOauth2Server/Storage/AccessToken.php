@@ -16,9 +16,10 @@ class AccessToken extends AbstractStorage implements AccessTokenInterface
         $accessToken = $this->getServiceLocator()
             ->get('doctrine.entitymanager.orm_default')
             ->getRepository('ApiOauth2Server\Model\Entity\OAuthAccessToken')
-            ->find($oauthToken);
+            ->getAccessTokenById($oauthToken)
+            ->getOneOrNullResult();
 
-        if (null !== $accessToken) {
+        if (isset($accessToken)) {
             if ($accessToken->getExpires()->getTimestamp() > Utility::createTime()->getTimestamp()) {
                 $hydrator = $this->getServiceLocator()
                     ->get('HydratorManager')

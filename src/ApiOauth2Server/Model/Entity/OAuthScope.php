@@ -11,6 +11,12 @@ class OAuthScope
 {
     /**
      * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @var int
+     */
+    protected $scopeId;
+
+    /**
      * @ORM\Column(type="string", length=100)
      * @var string
      */
@@ -35,6 +41,22 @@ class OAuthScope
      * @var string
      */
     protected $userId;
+
+	/**
+     * @return the $scopeId
+     */
+    public function getScopeId()
+    {
+        return $this->scopeId;
+    }
+
+	/**
+     * @param number $scopeId
+     */
+    public function setScopeId($scopeId)
+    {
+        $this->scopeId = $scopeId;
+    }
 
 	/**
      * @return the $type
