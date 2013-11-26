@@ -44,7 +44,7 @@ class OAuthRefreshToken
     protected $expires;
 
     /**
-     * @ORM\Column(type="string", columnDefinition="ENUM('yes', 'no')", nullable=false)
+     * @ORM\Column(type="enumyesno", nullable=false)
      * @var string
      */
     protected $used;
@@ -53,6 +53,13 @@ class OAuthRefreshToken
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     protected $scope;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=false)
+     * @ORM\Version
+     * @var string
+     */
+    protected $created;
 
 	/**
      * @return the $refreshToken

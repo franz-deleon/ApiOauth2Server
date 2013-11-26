@@ -59,6 +59,13 @@ class OAuthClient
      */
     protected $grantTypes;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=false)
+     * @ORM\Version
+     * @var string
+     */
+    protected $created;
+
 	/**
      * Constructor
      */
@@ -180,5 +187,37 @@ class OAuthClient
     public function setGrantTypes($grantTypes)
     {
         $this->grantTypes = $grantTypes;
+    }
+
+	/**
+     * @return the $scopes
+     */
+    public function getScopes()
+    {
+        return $this->scopes;
+    }
+
+	/**
+     * @param string $scopes
+     */
+    public function setScopes($scopes)
+    {
+        $this->scopes = $scopes;
+    }
+
+	/**
+     * @return the $created
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+	/**
+     * @param string $created
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
     }
 }

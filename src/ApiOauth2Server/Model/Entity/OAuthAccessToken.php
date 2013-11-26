@@ -31,7 +31,7 @@ class OAuthAccessToken
     protected $userId;
 
     /**
-     * @ORM\Column(type="datetime", length=50, nullable=false)
+     * @ORM\Column(type="datetime", nullable=false)
      */
     protected $expires;
 
@@ -39,6 +39,13 @@ class OAuthAccessToken
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     protected $scope;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=false)
+     * @ORM\Version
+     * @var string
+     */
+    protected $created;
 
 	/**
      * @return the $accessToken
@@ -122,5 +129,21 @@ class OAuthAccessToken
     public function setScope($scope)
     {
         $this->scope = $scope;
+    }
+
+	/**
+     * @return the $created
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+	/**
+     * @param string $created
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
     }
 }

@@ -19,12 +19,16 @@ return array(
             'query_cache'    => 'apc',
             'result_cache'   => 'apc',
             'metadata_cache' => 'apc',
+            'types' => array(
+                'enumyesno' => 'ApiOauth2Server\Model\Type\EnumYesNoType',
+            )
         ),
     ),
     'connection' => array(
         'orm_default' => array(
             'doctrine_type_mappings' => array(
-                'ENUM' => 'string'
+                'enumyesno' => 'enumyesno',
+                'enum' => 'string',
             ),
         ),
     ),

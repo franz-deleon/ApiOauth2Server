@@ -71,6 +71,7 @@ class OAuthUser
 
     /**
      * @ORM\Column(type="datetime", nullable=false)
+     * @ORM\Version
      * @var string
      */
     protected $created;
