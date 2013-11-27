@@ -52,7 +52,7 @@ class OAuthUser
     protected $userName;
 
     /**
-     * @ORM\Column(type="string", length=200, nullable=false)
+     * @ORM\Column(type="string", length=100, nullable=false)
      * @var string
      */
     protected $password;

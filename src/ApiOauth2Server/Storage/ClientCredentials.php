@@ -32,7 +32,7 @@ class ClientCredentials extends AbstractStorage implements ClientCredentialsInte
         $client = $this->getClientDetails($clientId);
 
         if ($client) {
-            return $client['client_secret'] === sha1($clientSecret);
+            return $client['client_secret'] === $clientSecret;
         }
         return false;
     }

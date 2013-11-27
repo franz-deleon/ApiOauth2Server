@@ -24,7 +24,7 @@ class OAuthScope
     protected $type = 'supported';
 
     /**
-     * @ORM\Column(type="string", length=200)
+     * @ORM\Column(type="string", length=50)
      * @var string
      */
     protected $scope;

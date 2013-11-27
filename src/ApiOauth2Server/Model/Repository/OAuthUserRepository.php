@@ -19,10 +19,11 @@ class OAuthUserRepository extends EntityRepository
             ->andWhere('u.password = :password')
             ->setParameters(array(
                 'username' => $username,
-                'password' => $password,
+                'password' => sha1($password),
             ));
 
-        return $queryBuilder->getQuery()->useResultCache(true, 3600, $username);
+        $cacheId = md5($username . $password);
+        return $queryBuilder->getQuery()->useResultCache(true, 3600, $cacheId);
     }
 
     public function getUserWithScopeAndClientByUsernameAndClientId($username, $clientId)
@@ -37,7 +38,7 @@ class OAuthUserRepository extends EntityRepository
                 'clientId' => $clientId,
             ));
 
-        $cacheId = $clientId . $username;
+        $cacheId = md5($clientId . $username);
         return $qb->getQuery()->useResultCache(true, 3600, $cacheId);
     }
 }
