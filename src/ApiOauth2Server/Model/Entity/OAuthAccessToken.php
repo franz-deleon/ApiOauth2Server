@@ -129,6 +129,7 @@ class OAuthAccessToken
     public function setScope($scope)
     {
         $this->scope = $scope;
+        return $this;
     }
 
 	/**
@@ -145,5 +146,6 @@ class OAuthAccessToken
     public function setCreated($created)
     {
         $this->created = $created;
+        return $this;
     }
 }
