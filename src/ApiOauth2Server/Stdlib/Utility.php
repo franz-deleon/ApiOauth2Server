@@ -16,14 +16,12 @@ class Utility
     }
 
     /**
-     * Calculate and generate a countdown timer for the oauth token
-     * @param int $endTime
+     * Calculate the time to die countdown timer for the oauth token
+     * @param  int $endTime The end time to live
      * @return string
      */
-    public static function calculateExpirationCountdown($endTime, $returnInt = true)
+    public static function calculateTTD($endTime, $returnInt = true)
     {
-        $now = self::createTime();
-
         if (!$endTime instanceof \DateTime) {
             $datetime = new \DateTime();
             if (is_int($endTime)) {
@@ -32,11 +30,11 @@ class Utility
             $endTime = $datetime;
         }
 
+        $nowTime = self::createTime()->getTimestamp();
         $endTime = $endTime->getTimestamp();
-        $now     = $now->getTimestamp();
 
-        if ($endTime > $now) {
-            $countdown = $endTime - $now;
+        if ($endTime > $nowTime) {
+            $countdown = $endTime - $nowTime;
         } else {
             $countdown = 0;
         }
