@@ -1,7 +1,7 @@
 <?php
 namespace ApiOauth2Server\Storage;
 
-use ApiOauth2Server\Lib\Utility;
+use ApiOauth2Server\Stdlib\Utility;
 use ApiOauth2Server\Model\Entity\OAuthRefreshToken as RToken;
 
 use OAuth2\Storage\RefreshTokenInterface;

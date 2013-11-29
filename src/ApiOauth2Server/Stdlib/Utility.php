@@ -1,5 +1,5 @@
 <?php
-namespace ApiOauth2Server\Lib;
+namespace ApiOauth2Server\Stdlib;
 
 class Utility
 {

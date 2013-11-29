@@ -1,7 +1,7 @@
 <?php
 namespace ApiOauth2Server\Storage;
 
-use ApiOauth2Server\Lib\Utility;
+use ApiOauth2Server\Stdlib\Utility;
 
 use OAuth2\Storage\AccessTokenInterface;
 

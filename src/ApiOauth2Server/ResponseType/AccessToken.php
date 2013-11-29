@@ -1,7 +1,7 @@
 <?php
 namespace ApiOauth2Server\ResponseType;
 
-use ApiOauth2Server\Lib\Utility;
+use ApiOauth2Server\Stdlib\Utility;
 
 use OAuth2\ResponseType\AccessToken as OAuth2AccessToken;
 
