@@ -32,6 +32,7 @@ class AccessToken extends AbstractStorage implements AccessTokenInterface
                         $return[$key] = $accessToken[$key];
                     }
                 }
+                unset($accessToken);
 
                 // just retrieve the client id
                 if ($return['clientId']) {
@@ -42,7 +43,6 @@ class AccessToken extends AbstractStorage implements AccessTokenInterface
                 if ($return['expires'] instanceof \DateTime) {
                     $return['expires'] = $return['expires']->getTimestamp();
                 }
-                unset($accessToken);
 
                 return $this->convertCamelKeysToUnderscore($return);
             }
