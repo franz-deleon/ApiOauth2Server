@@ -1,5 +1,5 @@
 <?php
-namespace ApiOauth2Server;
+namespace ApiOauth2ServerTests;
 
 use Zend\Loader\AutoloaderFactory;
 use Zend\Mvc\Service\ServiceManagerConfig;
@@ -36,6 +36,9 @@ class Bootstrap
                 'module_paths' => $zf2ModulePaths,
             ),
             'modules' => array(
+                'DoctrineModule',
+                'DoctrineORMModule',
+                'OAuth2Provider',
                 static::getModuleName(),
             )
         );
