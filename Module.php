@@ -39,7 +39,6 @@ class Module
                 'doctrine.cache.oauth2apc' => function ($sm) {
                     return new \Doctrine\Common\Cache\ApcCache();
                 },
-                'cacheFactory' => 'Zend\Cache\Service\StorageCacheFactory',
             ),
         );
     }
