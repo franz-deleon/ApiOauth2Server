@@ -116,25 +116,43 @@ class AccessTokenTest extends \PHPUnit_Framework_TestCase
 
     /**
 	 * Tests AccessToken->setAccessToken()
+	 * @group test2
 	 */
     public function testSetAccessToken()
     {
         $sm = Bootstrap::getServiceManager()->setAllowOverride(true);
 
         /** Client Mock **/
-        //$clientStub =
+        $clientMock = $this->getMockBuilder('ApiOauth2Server\Model\Entity\OAuthClient')
+            ->setMethods(array('find'))
+            ->getMock();
+        $clientMock->expects($this->exactly(1))
+            ->method('find')
+            ->with($this->isType('int'))
+            ->will($this->returnValue(new Entity\OAuthClient()));
+
+        /** User Mock **/
+        $userMock = $this->getMockBuilder('ApiOauth2Server\Model\Entity\OAuthClient')
+            ->setMethods(array('find'))
+            ->getMock();
+        $userMock->expects($this->exactly(1))
+            ->method('find')
+            ->with($this->isType('int'))
+            ->will($this->returnValue(new Entity\OAuthUser()));
 
         /** Mock For Doctrine Entity Manager **/
         $doctrineOrmMock = $this->getMockBuilder('Doctrine\ORM\EntityManager')
             ->disableOriginalConstructor()
-            ->setMethods(array('getRepository'))
+            ->setMethods(array('getRepository', 'persist', 'flush'))
             ->getMock();
-        $doctrineOrmMock->expects($this->exactly(1))
+        $doctrineOrmMock->expects($this->exactly(2))
             ->method('getRepository')
             ->with($this->logicalOr('ApiOauth2Server\Model\Entity\OAuthClient', 'ApiOauth2Server\Model\Entity\OAuthUser'))
-            ->will($this->returnValue($accessTokenRepoMock));
+            ->will($this->onConsecutiveCalls($clientMock, $userMock));
 
-        $this->AccessToken->setAccessToken(/* parameters */);
+        $sm->setService('doctrine.entitymanager.orm_default', $doctrineOrmMock);
+        $this->AccessToken->setServiceLocator($sm);
+
+        $r = $this->AccessToken->setAccessToken('XtokenX', 1, 1, date_create());
     }
 }
-
