@@ -9,7 +9,9 @@ return array(
                 'refresh_token'      => 'ApiOauth2Server/Storage/RefreshToken',
             ),
             'response_types' => array(
-                'ApiOauth2Server\ResponseType\AccessToken',
+                array(
+                    'name' => 'ApiOauth2Server\ResponseType\AccessToken',
+                )
             ),
             'grant_types' => array(
                 'user_credentials',

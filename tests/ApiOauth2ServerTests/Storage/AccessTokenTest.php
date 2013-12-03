@@ -119,7 +119,21 @@ class AccessTokenTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testSetAccessToken()
     {
-        $this->markTestIncomplete("setAccessToken test not implemented");
+        $sm = Bootstrap::getServiceManager()->setAllowOverride(true);
+
+        /** Client Mock **/
+        //$clientStub =
+
+        /** Mock For Doctrine Entity Manager **/
+        $doctrineOrmMock = $this->getMockBuilder('Doctrine\ORM\EntityManager')
+            ->disableOriginalConstructor()
+            ->setMethods(array('getRepository'))
+            ->getMock();
+        $doctrineOrmMock->expects($this->exactly(1))
+            ->method('getRepository')
+            ->with($this->logicalOr('ApiOauth2Server\Model\Entity\OAuthClient', 'ApiOauth2Server\Model\Entity\OAuthUser'))
+            ->will($this->returnValue($accessTokenRepoMock));
+
         $this->AccessToken->setAccessToken(/* parameters */);
     }
 }
