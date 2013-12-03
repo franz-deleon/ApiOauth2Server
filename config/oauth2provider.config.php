@@ -33,5 +33,5 @@ return array(
         ),
     ),
     'main_server' => 'mediaapi',
-    'controller' => 'OAuth2Provider\Controller\UserCredentialsController',
+    'controller' => 'ApiOauth2Server\Controller\UserCredentialsController',
 );
