@@ -18,12 +18,12 @@ class AccessToken extends OAuth2AccessToken implements ServiceManager\ServiceMan
      * (non-PHPdoc)
      * @see \OAuth2\ResponseType\AccessToken::createAccessToken()
      */
-    public function createAccessToken($client_id, $user_id, $scope = null, $includeRefreshToken = true)
+    public function createAccessToken($clientId, $userId, $scope = null, $includeRefreshToken = true)
     {
         $em = $this->serviceManager->get('doctrine.entitymanager.orm_default');
         $existingAccessToken = $em
             ->getRepository('ApiOauth2Server\Model\Entity\OAuthAccessToken')
-            ->getUnexpiredAccessTokenByClientIdUserId($client_id, $user_id)
+            ->getUnexpiredAccessTokenByClientIdUserId($clientId, $userId)
             ->getResult();
 
         $createNewAccessToken = true;
@@ -72,8 +72,8 @@ class AccessToken extends OAuth2AccessToken implements ServiceManager\ServiceMan
             // save to db
             $this->tokenStorage->setAccessToken(
                 $token["access_token"],
-                $client_id,
-                $user_id,
+                $clientId,
+                $userId,
                 $accessLifetime,
                 $token["scope"]
             );
@@ -87,7 +87,7 @@ class AccessToken extends OAuth2AccessToken implements ServiceManager\ServiceMan
          */
         $refreshToken = $em
             ->getRepository('ApiOauth2Server\Model\Entity\OAuthRefreshToken')
-            ->getUnusedRefreshTokenByClientIdAndUserIdAndScope($client_id, $user_id, $token['scope'])
+            ->getUnusedRefreshTokenByClientIdAndUserIdAndScope($clientId, $userId, $token['scope'])
             ->getOneOrNullResult();
 
         // do not create new refresh token if current one has not expired
@@ -105,8 +105,8 @@ class AccessToken extends OAuth2AccessToken implements ServiceManager\ServiceMan
             // save to db
             $this->refreshStorage->setRefreshToken(
                 $token['refresh_token'],
-                $client_id,
-                $user_id,
+                $clientId,
+                $userId,
                 $refreshLifetime,
                 $token["scope"]
             );
