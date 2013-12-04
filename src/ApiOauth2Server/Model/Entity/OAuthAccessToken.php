@@ -47,7 +47,7 @@ class OAuthAccessToken
      */
     protected $created;
 
-	/**
+    /**
      * @return the $accessToken
      */
     public function getAccessToken()
@@ -55,7 +55,7 @@ class OAuthAccessToken
         return $this->accessToken;
     }
 
-	/**
+    /**
      * @param field_type $accessToken
      */
     public function setAccessToken($accessToken)
@@ -64,7 +64,7 @@ class OAuthAccessToken
         return $this;
     }
 
-	/**
+    /**
      * @return the $clientId
      */
     public function getClientId()
@@ -72,7 +72,7 @@ class OAuthAccessToken
         return $this->clientId;
     }
 
-	/**
+    /**
      * @param field_type $clientId
      */
     public function setClientId($clientId)
@@ -81,7 +81,7 @@ class OAuthAccessToken
         return $this;
     }
 
-	/**
+    /**
      * @return the $userId
      */
     public function getUserId()
@@ -89,7 +89,7 @@ class OAuthAccessToken
         return $this->userId;
     }
 
-	/**
+    /**
      * @param field_type $userId
      */
     public function setUserId($userId)
@@ -98,7 +98,7 @@ class OAuthAccessToken
         return $this;
     }
 
-	/**
+    /**
      * @return the $expires
      */
     public function getExpires()
@@ -106,7 +106,7 @@ class OAuthAccessToken
         return $this->expires;
     }
 
-	/**
+    /**
      * @param field_type $expires
      */
     public function setExpires($expires)
@@ -115,7 +115,7 @@ class OAuthAccessToken
         return $this;
     }
 
-	/**
+    /**
      * @return the $scope
      */
     public function getScope()
@@ -123,7 +123,7 @@ class OAuthAccessToken
         return $this->scope;
     }
 
-	/**
+    /**
      * @param string $scope
      */
     public function setScope($scope)
@@ -132,7 +132,7 @@ class OAuthAccessToken
         return $this;
     }
 
-	/**
+    /**
      * @return the $created
      */
     public function getCreated()
@@ -140,7 +140,7 @@ class OAuthAccessToken
         return $this->created;
     }
 
-	/**
+    /**
      * @param string $created
      */
     public function setCreated($created)

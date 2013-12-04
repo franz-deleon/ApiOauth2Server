@@ -43,7 +43,7 @@ class OAuthScope
      */
     protected $userId;
 
-	/**
+    /**
      * @return the $scopeId
      */
     public function getScopeId()
@@ -51,15 +51,16 @@ class OAuthScope
         return $this->scopeId;
     }
 
-	/**
+    /**
      * @param number $scopeId
      */
     public function setScopeId($scopeId)
     {
         $this->scopeId = $scopeId;
+        return $this;
     }
 
-	/**
+    /**
      * @return the $type
      */
     public function getType()
@@ -67,15 +68,16 @@ class OAuthScope
         return $this->type;
     }
 
-	/**
+    /**
      * @param string $type
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
-	/**
+    /**
      * @return the $scope
      */
     public function getScope()
@@ -83,15 +85,16 @@ class OAuthScope
         return $this->scope;
     }
 
-	/**
+    /**
      * @param string $scope
      */
     public function setScope($scope)
     {
         $this->scope = $scope;
+        return $this;
     }
 
-	/**
+    /**
      * @return the $clientId
      */
     public function getClientId()
@@ -99,15 +102,16 @@ class OAuthScope
         return $this->clientId;
     }
 
-	/**
+    /**
      * @param string $clientId
      */
     public function setClientId($clientId)
     {
         $this->clientId = $clientId;
+        return $this;
     }
 
-	/**
+    /**
      * @return the $userId
      */
     public function getUserId()
@@ -115,14 +119,12 @@ class OAuthScope
         return $this->userId;
     }
 
-	/**
+    /**
      * @param string $userId
      */
     public function setUserId($userId)
     {
         $this->userId = $userId;
+        return $this;
     }
-
-
-
 }

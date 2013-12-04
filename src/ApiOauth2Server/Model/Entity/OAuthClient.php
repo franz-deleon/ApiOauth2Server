@@ -66,10 +66,10 @@ class OAuthClient
      */
     protected $created;
 
-	/**
+    /**
      * Constructor
      */
-	public function __construct()
+    public function __construct()
     {
         $this->userIds       = new ArrayCollection();
         $this->refreshTokens = new ArrayCollection();
@@ -85,7 +85,7 @@ class OAuthClient
         return $this->clientId;
     }
 
-	/**
+    /**
      * @param string $clientId
      */
     public function setClientId($clientId)
@@ -93,7 +93,7 @@ class OAuthClient
         $this->clientId = $clientId;
     }
 
-	/**
+    /**
      * @return the $userIds
      */
     public function getUsers()
@@ -101,12 +101,13 @@ class OAuthClient
         return $this->users;
     }
 
-	/**
+    /**
      * @param \Doctrine\Common\Collections\ArrayCollection $userIds
      */
     public function setUsers($users)
     {
         $this->users = $users;
+        return $this;
     }
 
     /**
@@ -117,15 +118,16 @@ class OAuthClient
         return $this->refreshTokens;
     }
 
-	/**
+    /**
      * @param string $refreshTokens
      */
     public function setRefreshTokens($refreshTokens)
     {
         $this->refreshTokens = $refreshTokens;
+        return $this;
     }
 
-	/**
+    /**
      * @return the $accessTokens
      */
     public function getAccessTokens()
@@ -133,15 +135,16 @@ class OAuthClient
         return $this->accessTokens;
     }
 
-	/**
+    /**
      * @param string $accessTokens
      */
     public function setAccessTokens($accessTokens)
     {
         $this->accessTokens = $accessTokens;
+        return $this;
     }
 
-	/**
+    /**
      * @return the $clientSecret
      */
     public function getClientSecret()
@@ -149,15 +152,16 @@ class OAuthClient
         return $this->clientSecret;
     }
 
-	/**
+    /**
      * @param string $clientSecret
      */
     public function setClientSecret($clientSecret)
     {
         $this->clientSecret = $clientSecret;
+        return $this;
     }
 
-	/**
+    /**
      * @return the $redirectUri
      */
     public function getRedirectUri()
@@ -165,15 +169,16 @@ class OAuthClient
         return $this->redirectUri;
     }
 
-	/**
+    /**
      * @param string $redirectUri
      */
     public function setRedirectUri($redirectUri)
     {
         $this->redirectUri = $redirectUri;
+        return $this;
     }
 
-	/**
+    /**
      * @return the $grantTypes
      */
     public function getGrantTypes()
@@ -181,15 +186,16 @@ class OAuthClient
         return $this->grantTypes;
     }
 
-	/**
+    /**
      * @param string $grantTypes
      */
     public function setGrantTypes($grantTypes)
     {
         $this->grantTypes = $grantTypes;
+        return $this;
     }
 
-	/**
+    /**
      * @return the $scopes
      */
     public function getScopes()
@@ -197,15 +203,16 @@ class OAuthClient
         return $this->scopes;
     }
 
-	/**
+    /**
      * @param string $scopes
      */
     public function setScopes($scopes)
     {
         $this->scopes = $scopes;
+        return $this;
     }
 
-	/**
+    /**
      * @return the $created
      */
     public function getCreated()
@@ -213,11 +220,12 @@ class OAuthClient
         return $this->created;
     }
 
-	/**
+    /**
      * @param string $created
      */
     public function setCreated($created)
     {
         $this->created = $created;
+        return $this;
     }
 }

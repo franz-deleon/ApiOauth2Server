@@ -61,7 +61,7 @@ class OAuthRefreshToken
      */
     protected $created;
 
-	/**
+    /**
      * @return the $refreshToken
      */
     public function getRefreshToken()
@@ -69,7 +69,7 @@ class OAuthRefreshToken
         return $this->refreshToken;
     }
 
-	/**
+    /**
      * @param string $refreshToken
      */
     public function setRefreshToken($refreshToken)
@@ -78,7 +78,7 @@ class OAuthRefreshToken
         return $this;
     }
 
-	/**
+    /**
      * @return the $clientId
      */
     public function getClientId()
@@ -86,7 +86,7 @@ class OAuthRefreshToken
         return $this->clientId;
     }
 
-	/**
+    /**
      * @param field_type $clientId
      */
     public function setClientId($clientId)
@@ -95,7 +95,7 @@ class OAuthRefreshToken
         return $this;
     }
 
-	/**
+    /**
      * @return the $userId
      */
     public function getUserId()
@@ -103,7 +103,7 @@ class OAuthRefreshToken
         return $this->userId;
     }
 
-	/**
+    /**
      * @param field_type $userId
      */
     public function setUserId($userId)
@@ -112,7 +112,7 @@ class OAuthRefreshToken
         return $this;
     }
 
-	/**
+    /**
      * @return the $expires
      */
     public function getExpires()
@@ -120,7 +120,7 @@ class OAuthRefreshToken
         return $this->expires;
     }
 
-	/**
+    /**
      * @param \ApiOauth2Server\Model\Entity\unknown $expires
      */
     public function setExpires($expires)
@@ -129,7 +129,7 @@ class OAuthRefreshToken
         return $this;
     }
 
-	/**
+    /**
      * @return the $used
      */
     public function getUsed()
@@ -137,7 +137,7 @@ class OAuthRefreshToken
         return $this->used;
     }
 
-	/**
+    /**
      * @param number $used
      */
     public function setUsed($used)
@@ -146,7 +146,7 @@ class OAuthRefreshToken
         return $this;
     }
 
-	/**
+    /**
      * @return the $scope
      */
     public function getScope()
@@ -154,11 +154,12 @@ class OAuthRefreshToken
         return $this->scope;
     }
 
-	/**
+    /**
      * @param string $scope
      */
     public function setScope($scope)
     {
         $this->scope = $scope;
+        return $this;
     }
 }

@@ -76,10 +76,10 @@ class OAuthUser
      */
     protected $created;
 
-	/**
+    /**
      *Constructor
      */
-	public function __construct()
+    public function __construct()
     {
         $this->clientIds     = new ArrayCollection();
         $this->refreshTokens = new ArrayCollection();
@@ -95,15 +95,16 @@ class OAuthUser
         return $this->userId;
     }
 
-	/**
+    /**
      * @param string $userId
      */
     public function setUserId($userId)
     {
         $this->userId = $userId;
+        return $this;
     }
 
-	/**
+    /**
      * @return the $clientIds
      */
     public function getClients()
@@ -111,12 +112,13 @@ class OAuthUser
         return $this->clients;
     }
 
-	/**
+    /**
      * @param \Doctrine\Common\Collections\ArrayCollection $clientIds
      */
     public function setClients($clients)
     {
         $this->clients = $clients;
+        return $this;
     }
 
     /**
@@ -127,15 +129,16 @@ class OAuthUser
         return $this->refreshTokens;
     }
 
-	/**
+    /**
      * @param string $refreshTokens
      */
     public function setRefreshTokens($refreshTokens)
     {
         $this->refreshTokens = $refreshTokens;
+        return $this;
     }
 
-	/**
+    /**
      * @return the $accessTokens
      */
     public function getAccessTokens()
@@ -143,15 +146,16 @@ class OAuthUser
         return $this->accessTokens;
     }
 
-	/**
+    /**
      * @param string $accessTokens
      */
     public function setAccessTokens($accessTokens)
     {
         $this->accessTokens = $accessTokens;
+        return $this;
     }
 
-	/**
+    /**
      * @return the $userName
      */
     public function getUserName()
@@ -159,15 +163,16 @@ class OAuthUser
         return $this->userName;
     }
 
-	/**
+    /**
      * @param string $userName
      */
     public function setUserName($userName)
     {
         $this->userName = $userName;
+        return $this;
     }
 
-	/**
+    /**
      * @return the $password
      */
     public function getPassword()
@@ -175,15 +180,16 @@ class OAuthUser
         return $this->password;
     }
 
-	/**
+    /**
      * @param string $password
      */
     public function setPassword($password)
     {
         $this->password = $password;
+        return $this;
     }
 
-	/**
+    /**
      * @return the $firstName
      */
     public function getFirstName()
@@ -191,15 +197,16 @@ class OAuthUser
         return $this->firstName;
     }
 
-	/**
+    /**
      * @param string $firstName
      */
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
+        return $this;
     }
 
-	/**
+    /**
      * @return the $lastName
      */
     public function getLastName()
@@ -207,15 +214,16 @@ class OAuthUser
         return $this->lastName;
     }
 
-	/**
+    /**
      * @param string $lastName
      */
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
+        return $this;
     }
 
-	/**
+    /**
      * @return the $created
      */
     public function getCreated()
@@ -223,12 +231,13 @@ class OAuthUser
         return $this->created;
     }
 
-	/**
+    /**
      * @param string $created
      */
     public function setCreated($created)
     {
-        $this->created = "2013-NOV-12 12:21:12";
+        $this->created = $created;
+        return $this;
     }
 
 }
