@@ -32,7 +32,7 @@ class OAuthUserRepository extends EntityRepository
     public function getUserWithScopeAndClientByUsernameAndClientId($username, $clientId)
     {
         $qb = $this->createQueryBuilder('u')
-            ->addSelect(array('u.userId', 's.scope'))
+            ->select(array('u.userId', 's.scope'))
             ->leftJoin('u.scopes', 's')
             ->where('u.userName = :username')
             ->andWhere('s.clientId = :clientId')

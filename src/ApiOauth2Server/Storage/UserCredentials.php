@@ -5,6 +5,10 @@ use OAuth2\Storage\UserCredentialsInterface;
 
 class UserCredentials extends AbstractStorage implements UserCredentialsInterface
 {
+    /**
+     * (non-PHPdoc)
+     * @see \OAuth2\Storage\UserCredentialsInterface::checkUserCredentials()
+     */
     public function checkUserCredentials($username, $password)
     {
         $clientId = (string) $this->getServiceLocator()->get('oauth2provider.server.main.request')->request('client_id');
@@ -22,6 +26,10 @@ class UserCredentials extends AbstractStorage implements UserCredentialsInterfac
         return false;
     }
 
+    /**
+     * (non-PHPdoc)
+     * @see \OAuth2\Storage\UserCredentialsInterface::getUserDetails()
+     */
     public function getUserDetails($username)
     {
         $clientId = (string) $this->getServiceLocator()->get('oauth2provider.server.main.request')->request('client_id');
@@ -30,11 +38,10 @@ class UserCredentials extends AbstractStorage implements UserCredentialsInterfac
             ->get('doctrine.entitymanager.orm_default')
             ->getRepository('ApiOauth2Server\Model\Entity\OAuthUser')
             ->getUserWithScopeAndClientByUsernameAndClientId($username, $clientId)
-            ->getArrayResult();
+            ->getOneOrNullResult();
 
         if (!empty($userDetails)) {
-            unset($userDetails[0][0]); // remove the first aggregate value
-            return $this->convertCamelKeysToUnderscore($userDetails[0]);
+            return $this->convertCamelKeysToUnderscore($userDetails);
         }
 
         return false;
