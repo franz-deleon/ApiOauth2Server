@@ -7,23 +7,18 @@ class UserCredentials extends AbstractStorage implements UserCredentialsInterfac
 {
     public function checkUserCredentials($username, $password)
     {
+        $clientId = (string) $this->getServiceLocator()->get('oauth2provider.server.main.request')->request('client_id');
+
         $user = $this->getServiceLocator()
             ->get('doctrine.entitymanager.orm_default')
             ->getRepository('ApiOauth2Server\Model\Entity\OAuthUser')
-            ->getUserByUsernameAndPassword($username, $password)
+            ->getUserByUsernameAndPasswordAndClientId($username, $password, $clientId)
             ->getOneOrNullResult();
 
-        if (empty($user)) {
-            return false;
+        if (!empty($user)) {
+            return true;
         }
 
-        $clientId = (string) $this->getServiceLocator()->get('oauth2provider.server.main.request')->request('client_id');
-        foreach ($user->getClients() as $client) {
-            $userClientId = (string) $client->getClientId();
-            if ($userClientId === $clientId) {
-                return true;
-            }
-        }
         return false;
     }
 

@@ -12,14 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class OAuthUserRepository extends EntityRepository
 {
-    public function getUserByUsernameAndPassword($username, $password)
+    public function getUserByUsernameAndPasswordAndClientId($username, $password, $clientId)
     {
         $queryBuilder = $this->createQueryBuilder('u')
+            ->innerJoin('u.clients', 'c')
             ->where('u.userName = :username')
             ->andWhere('u.password = :password')
+            ->andWhere('c.clientId = :client')
             ->setParameters(array(
                 'username' => $username,
                 'password' => sha1($password),
+                'client'   => $clientId,
             ));
 
         $cacheId = md5($username . $password);
