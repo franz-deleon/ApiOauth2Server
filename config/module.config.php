@@ -23,6 +23,6 @@ return array(
             'ApiOauth2Server/Model/Entity/User'         => false,
         ),
     ),
-    'doctrine' => include_once __DIR__ . '/doctrine.config.php',
-    'oauth2provider' => include_once __DIR__ . '/oauth2provider.config.php',
+    'doctrine' => include __DIR__ . '/doctrine.config.php',
+    'oauth2provider' => include __DIR__ . '/oauth2provider.config.php',
 );
