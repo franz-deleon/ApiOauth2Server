@@ -14,10 +14,10 @@ class ClientCredentials extends AbstractStorage implements ClientCredentialsInte
         $clientData = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default')
             ->getRepository('ApiOauth2Server\Model\Entity\OAuthClient')
             ->getClientDetails($clientId)
-            ->getResult();
+            ->getOneOrNullResult();
 
         if (!empty($clientData)) {
-            return $this->convertCamelKeysToUnderscore($clientData[0]);
+            return $this->convertCamelKeysToUnderscore($clientData);
         }
 
         return false;
