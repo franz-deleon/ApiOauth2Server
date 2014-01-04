@@ -30,8 +30,11 @@ return array(
                     'supported_scopes' => array('get', 'put', 'post', 'delete'),
                 ),
             ),
+            'version' => 'v1',
+            'controller' => 'ApiOauth2Server\Controller\UserCredentialsController',
         ),
     ),
-    'main_server' => 'mediaapi',
-    'controller' => 'ApiOauth2Server\Controller\UserCredentialsController',
+    'main_server'  => 'mediaapi',
+    'main_version' => 'v1',
+    'default_controller' => 'ApiOauth2Server\Controller\UserCredentialsController',
 );
