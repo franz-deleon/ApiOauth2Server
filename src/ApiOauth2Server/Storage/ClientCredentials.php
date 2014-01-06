@@ -46,4 +46,13 @@ class ClientCredentials extends AbstractStorage implements ClientCredentialsInte
         // we do not support different grant types per client in this example
         return true;
     }
+
+    /**
+     * (non-PHPdoc)
+     * @see \OAuth2\Storage\ClientCredentialsInterface::isPublicClient()
+     */
+    public function isPublicClient($client_id)
+    {
+        return true;
+    }
 }
