@@ -12,13 +12,13 @@ use ApiOauth2Server\Storage\RefreshToken;
 class RefreshTokenTest extends \PHPUnit_Framework_TestCase
 {
     /**
-	 * @var RefreshToken
-	 */
+     * @var RefreshToken
+     */
     private $RefreshToken;
 
     /**
-	 * Prepares the environment before running a test.
-	 */
+     * Prepares the environment before running a test.
+     */
     protected function setUp()
     {
         parent::setUp();
@@ -26,8 +26,8 @@ class RefreshTokenTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Cleans up the environment after running a test.
-	 */
+     * Cleans up the environment after running a test.
+     */
     protected function tearDown()
     {
         $this->RefreshToken = null;
@@ -35,16 +35,16 @@ class RefreshTokenTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Constructs the test case.
-	 */
+     * Constructs the test case.
+     */
     public function __construct()
     {
     }
 
     /**
-	 * Tests RefreshToken->getRefreshToken()
-	 * @group test1
-	 */
+     * Tests RefreshToken->getRefreshToken()
+     * @group test1
+     */
     public function testGetRefreshToken()
     {
         $time = time() + 3600;
@@ -105,9 +105,9 @@ class RefreshTokenTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Tests RefreshToken->setRefreshToken()
-	 * @group test2
-	 */
+     * Tests RefreshToken->setRefreshToken()
+     * @group test2
+     */
     public function testSetRefreshToken()
     {
         $time = time() + 3600;
@@ -156,9 +156,9 @@ class RefreshTokenTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($r);
     }
     /**
-	 * Tests RefreshToken->unsetRefreshToken()
-	 * @group test3
-	 */
+     * Tests RefreshToken->unsetRefreshToken()
+     * @group test3
+     */
     public function testUnsetRefreshToken()
     {
         /** refresh token repo mock **/

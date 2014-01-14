@@ -8,6 +8,9 @@ return array(
                 'access_token'       => 'ApiOauth2Server/Storage/AccessToken',
                 'refresh_token'      => 'ApiOauth2Server/Storage/RefreshToken',
             ),
+            'configs' => array(
+                'access_lifetime' => 3600,
+            ),
             'response_types' => array(
                 array(
                     'name' => 'ApiOauth2Server\ResponseType\AccessToken',
